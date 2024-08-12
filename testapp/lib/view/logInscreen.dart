@@ -86,16 +86,17 @@ class Loginscreen extends StatelessWidget {
     try {
       if (_phoneController.text.isNotEmpty) {
         var object = {
-          "mobileNumber": _phoneController.text,
+          "mobileNumber": _phoneController.text.trim(),
           "deviceId": "62b341aeb0ab5ebe28a758a3"
         };
         final responce = await http.post(
             Uri.parse('http://devapiv4.dealsdray.com/api/v2/user/otp'),
+            headers: {'Content-Type': 'application/json'},
             body: jsonEncode(object));
         var responce2 = jsonDecode(responce.body);
         print('value is ${responce2['status']}');
 
-        if (responce2['status'] == 0) {
+        if (responce2['status'] == 1) {
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => OtpScreen()),
           );

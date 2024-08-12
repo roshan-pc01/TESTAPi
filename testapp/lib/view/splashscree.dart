@@ -15,7 +15,7 @@ class _SplashscreeState extends State<Splashscree> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 3),
+      Duration(seconds: 5),
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => Loginscreen()),
@@ -27,8 +27,19 @@ class _SplashscreeState extends State<Splashscree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow,
       body: Center(
-        child: Text('welcome.....'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('welcome...'),
+            ),
+            Center(child: CircularProgressIndicator())
+          ],
+        ),
       ),
     );
   }

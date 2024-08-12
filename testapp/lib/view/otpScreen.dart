@@ -22,11 +22,7 @@ class OtpScreen extends StatelessWidget {
         var responce2 = jsonDecode(responce.body);
         print('value is ${responce2['status']}');
 
-        if (responce2['status'] == 200) {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
-        }
+        if (responce2['status'] == 200) {}
       }
     } catch (e) {
       print(e);
@@ -41,35 +37,55 @@ class OtpScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _otpController,
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-              hintText: 'OTP',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0), // Rounded edges
-                borderSide: BorderSide(
-                  color: Colors.green, // Border color
-                  width: 1.0, // Border width
+          Padding(
+            padding: const EdgeInsets.all(40),
+            child: TextField(
+              controller: _otpController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                hintText: 'OTP',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0), // Rounded edges
+                  borderSide: BorderSide(
+                    color: Colors.green, // Border color
+                    width: 1.0, // Border width
+                  ),
                 ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0), // Rounded edges
-                borderSide: BorderSide(
-                  color: Colors.green, // Border color when focused
-                  width: 1.0, // Border width
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0), // Rounded edges
+                  borderSide: BorderSide(
+                    color: Colors.green, // Border color when focused
+                    width: 1.0, // Border width
+                  ),
                 ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0), // Rounded edges
-                borderSide: BorderSide(
-                  color: const Color.fromARGB(
-                      255, 86, 165, 89), // Border color when enabled
-                  width: 1.0, // Border width
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0), // Rounded edges
+                  borderSide: BorderSide(
+                    color: const Color.fromARGB(
+                        255, 86, 165, 89), // Border color when enabled
+                    width: 1.0, // Border width
+                  ),
                 ),
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+                checkVerification(context);
+              },
+              child: Text(
+                'VERIFY CODE',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              color: const Color.fromARGB(255, 230, 99, 90),
+            ),
+          )
         ],
       ),
     );
